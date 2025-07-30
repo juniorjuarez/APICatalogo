@@ -1,0 +1,29 @@
+# Build results
+bin/
+obj/
+
+
+# User-specific files
+*.user
+*.suo
+
+# VS Code
+.vscode/
+
+# Visual Studio
+.vs/
+
+# ASP.NET Core secrets
+secrets.json
+
+# Publish
+*.publishsettings
+
+# Logs
+*.log
+
+# Configs sensíveis
+appsettings.Production.json
+
+obj/
+bin/
