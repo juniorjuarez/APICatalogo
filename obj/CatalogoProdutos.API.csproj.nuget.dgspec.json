@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jose.santos\\Documents\\VS_CODE\\BACKEND\\dotnet\\UDEMY\\Macoratti\\APICatalogo\\CatalogoProdutos.API\\CatalogoProdutos.API.csproj": {}
+    "/workspaces/APICatalogo/CatalogoProdutos.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jose.santos\\Documents\\VS_CODE\\BACKEND\\dotnet\\UDEMY\\Macoratti\\APICatalogo\\CatalogoProdutos.API\\CatalogoProdutos.API.csproj": {
+    "/workspaces/APICatalogo/CatalogoProdutos.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jose.santos\\Documents\\VS_CODE\\BACKEND\\dotnet\\UDEMY\\Macoratti\\APICatalogo\\CatalogoProdutos.API\\CatalogoProdutos.API.csproj",
+        "projectUniqueName": "/workspaces/APICatalogo/CatalogoProdutos.API.csproj",
         "projectName": "CatalogoProdutos.API",
-        "projectPath": "C:\\Users\\jose.santos\\Documents\\VS_CODE\\BACKEND\\dotnet\\UDEMY\\Macoratti\\APICatalogo\\CatalogoProdutos.API\\CatalogoProdutos.API.csproj",
-        "packagesPath": "C:\\Users\\jose.santos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jose.santos\\Documents\\VS_CODE\\BACKEND\\dotnet\\UDEMY\\Macoratti\\APICatalogo\\CatalogoProdutos.API\\obj\\",
+        "projectPath": "/workspaces/APICatalogo/CatalogoProdutos.API.csproj",
+        "packagesPath": "/home/codespace/.nuget/packages/",
+        "outputPath": "/workspaces/APICatalogo/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jose.santos\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/codespace/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -87,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.412/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.412/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
