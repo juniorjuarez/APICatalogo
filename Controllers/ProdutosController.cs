@@ -40,10 +40,9 @@ namespace APICatalogo.Controllers
             {
                 return NotFound("Nenhum produto encontrado!");
             }
-            else
-            {
-                return produto;
-            }
+
+            return produto;
+
 
         }
 
