@@ -1,5 +1,5 @@
+using System.Text.Json.Serialization;
 using CatalogoProdutos.API.Context;
-
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
+
 // builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(connectionString));
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(connectionString));

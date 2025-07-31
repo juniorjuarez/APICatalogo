@@ -32,7 +32,7 @@ namespace APICatalogo.Controllers
 
         }
 
-        [HttpGet("id:int", Name = "ObterCategoria")]
+        [HttpGet("{id:int}", Name = "ObterCategoria")]
         public ActionResult<Categoria> Get(int id)
         {
             var categoria = _context.Categorias.FirstOrDefault(c => c.CategoriaId == id);
@@ -42,6 +42,13 @@ namespace APICatalogo.Controllers
                 return NotFound("Nenhum produto encontrado!");
             }
             return categoria;
+        }
+
+        [HttpGet("produtos")]
+        public ActionResult<IEnumerable<Categoria>> GetCategoriasProdutos()
+        {
+            return _context.Categorias.Include(p => p.Produtos).ToList();
+
         }
 
         [HttpPost]
@@ -55,6 +62,33 @@ namespace APICatalogo.Controllers
             _context.Categorias.Add(categoria);
             _context.SaveChanges();
             return new CreatedAtRouteResult("ObterCategoria", new { id = categoria.CategoriaId }, categoria);
+        }
+
+        [HttpPut("{id:int}")]
+        public ActionResult Put(int id, Categoria categoria)
+        {
+            if (id != categoria.CategoriaId)
+            {
+                return BadRequest();
+            }
+            _context.Entry(categoria).State = EntityState.Modified;
+            _context.SaveChanges();
+            return Ok(categoria);
+        }
+
+        [HttpDelete("{id:int}")]
+        public ActionResult Delete(int id)
+        {
+            var categoria = _context.Categorias.FirstOrDefault(c => c.CategoriaId == id);
+
+            if (categoria == null)
+            {
+                return NotFound("Nenhuma categoria encontrada!");
+            }
+
+            _context.Categorias.Remove(categoria);
+            _context.SaveChanges();
+            return Ok();
         }
     }
 }
