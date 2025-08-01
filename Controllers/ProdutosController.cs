@@ -2,7 +2,7 @@ using CatalogoProdutos.API.Context;
 using CatalogoProdutos.API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+
 
 namespace APICatalogo.Controllers
 {
@@ -19,30 +19,49 @@ namespace APICatalogo.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Produto>> Get()
         {
-            var produtos = _context.Produtos.ToList();
+
+            var produtos = _context.Produtos.AsNoTracking().ToList();
 
 
-            if (produtos.Any())
+
+            try
             {
-                return produtos;
+                if (produtos.Any())
+                {
+                    return produtos;
+                }
+                else
+                {
+                    return NotFound("Nenhum produto encontrado!");
+                }
+
             }
-            else
+            catch (Exception)
             {
-                return NotFound("Nenhum produto encontrado!");
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro ao realizar a requisição");
             }
         }
         [HttpGet("{id:int}", Name = "ObterProduto")]
         public ActionResult<Produto> Get(int id)
         {
-            var produto = _context.Produtos.FirstOrDefault(p => p.ProdutoId == id);
-
-            if (produto == null)
+            try
             {
-                return NotFound("Nenhum produto encontrado!");
+                var produto = _context.Produtos.FirstOrDefault(p => p.ProdutoId == id);
+
+                if (produto == null)
+                {
+                    return NotFound("Nenhum produto encontrado!");
+                }
+
+                return produto;
+
             }
+            catch (Exception)
+            {
 
-            return produto;
-
+                return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro ao realizar a requisição");
+            }
 
         }
 
@@ -50,27 +69,45 @@ namespace APICatalogo.Controllers
         public ActionResult Post(Produto produto)
         {
 
-            if (produto is null)
+            try
             {
-                return BadRequest();
+                if (produto is null)
+                {
+                    return BadRequest();
+                }
+                _context.Produtos.Add(produto);
+                _context.SaveChanges();
+                return new CreatedAtRouteResult("ObterProduto", new { id = produto.ProdutoId }, produto);
+
             }
-            _context.Produtos.Add(produto);
-            _context.SaveChanges();
-            return new CreatedAtRouteResult("ObterProduto", new { id = produto.ProdutoId }, produto);
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro ao realizar a requisição");
+            }
         }
 
         [HttpPut("{id:int}")]
         public ActionResult Put(int id, Produto produto)
         {
 
-            if (id != produto.ProdutoId)
+            try
             {
-                return BadRequest();
-            }
+                if (id != produto.ProdutoId)
+                {
+                    return BadRequest();
+                }
 
-            _context.Entry(produto).State = EntityState.Modified;
-            _context.SaveChanges();
-            return Ok(produto);
+                _context.Entry(produto).State = EntityState.Modified;
+                _context.SaveChanges();
+                return Ok(produto);
+
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro ao realizar a requisição");
+            }
         }
         [HttpDelete("{id:int}")]
         public ActionResult Delete(int id)
@@ -78,14 +115,23 @@ namespace APICatalogo.Controllers
 
             var produto = _context.Produtos.FirstOrDefault(p => p.ProdutoId == id);
 
-            if (produto == null)
+            try
             {
-                return NotFound("Nenhum produto encontrado!");
-            }
+                if (produto == null)
+                {
+                    return NotFound("Nenhum produto encontrado!");
+                }
 
-            _context.Produtos.Remove(produto);
-            _context.SaveChanges();
-            return Ok();
+                _context.Produtos.Remove(produto);
+                _context.SaveChanges();
+                return Ok();
+
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro ao realizar a requisição");
+            }
 
         }
 
