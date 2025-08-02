@@ -1,130 +1,144 @@
-# Catálogo de Produtos API
+# 📦 Catálogo de Produtos API
 
-## Sobre o Projeto
+## 📚 Sobre o Projeto
 
-[cite\_start]A **Catálogo de Produtos API** é um projeto desenvolvido em ASP.NET Core 8 [cite: 1] com o objetivo de criar um catálogo de produtos e suas respectivas categorias. Esta API RESTful permite realizar operações de CRUD (Criar, Ler, Atualizar e Deletar) tanto para produtos quanto para categorias.
+A **Catálogo de Produtos API** é uma aplicação desenvolvida com **ASP.NET Core 8**, com o objetivo de gerenciar produtos e suas respectivas categorias de forma simples e eficiente.
 
-Este projeto foi criado como parte de um estudo pessoal para aprimorar conhecimentos em desenvolvimento de APIs com as tecnologias mais recentes do ecossistema .NET.
+Essa API RESTful permite realizar operações CRUD (Criar, Ler, Atualizar e Deletar) tanto para **produtos** quanto para **categorias**. O projeto foi criado como parte de um estudo pessoal para aprimorar conhecimentos em desenvolvimento de APIs utilizando as tecnologias mais recentes do ecossistema .NET.
 
-## Tecnologias Utilizadas
+---
 
-- [cite\_start]**.NET 8** [cite: 1]
+## 🚀 Tecnologias Utilizadas
+
+- **.NET 8**
 - **ASP.NET Core Web API**
 - **Entity Framework Core 9**
-- [cite\_start]**Swagger/OpenAPI** [cite: 1] para documentação e teste de endpoints
-- **SQLite** como banco de dados
+- **SQLite** (banco de dados leve e prático)
+- **Swagger / OpenAPI** (para documentação e testes de endpoints)
 
-## Funcionalidades
+---
 
-- **Gestão de Produtos:**
+## ✅ Funcionalidades
 
-  - Listar todos os produtos
-  - Buscar um produto específico por ID
-  - Adicionar um novo produto
-  - Atualizar as informações de um produto existente
-  - Remover um produto
+### 🛍️ Produtos
 
-- **Gestão de Categorias:**
+- Listar todos os produtos
+- Buscar produto por ID
+- Criar novo produto
+- Atualizar produto existente
+- Remover produto
 
-  - Listar todas as categorias
-  - Buscar uma categoria específica por ID
-  - Listar todas as categorias com seus respectivos produtos
-  - Adicionar uma nova categoria
-  - Atualizar as informações de uma categoria existente
-  - Remover uma categoria
+### 🗂️ Categorias
 
-## Estrutura dos Dados
+- Listar todas as categorias
+- Buscar categoria por ID
+- Listar categorias com seus respectivos produtos
+- Criar nova categoria
+- Atualizar categoria existente
+- Remover categoria
 
-### Produto
+---
 
-| Campo          | Tipo de Dado    | Restrições        |
-| :------------- | :-------------- | :---------------- |
+## 🧱 Estrutura dos Dados
+
+### 📌 Produto
+
+| Campo          | Tipo            | Restrições        |
+| -------------- | --------------- | ----------------- |
 | `ProdutoId`    | `int`           | Chave Primária    |
 | `Nome`         | `string(80)`    | Obrigatório       |
 | `Descricao`    | `string(300)`   | Obrigatório       |
 | `Preco`        | `decimal(10,2)` | Obrigatório       |
 | `ImagemUrl`    | `string(300)`   | Obrigatório       |
-| `Estoque`      | `float`         |                   |
-| `DataCadastro` | `DateTime`      |                   |
+| `Estoque`      | `float`         | Opcional          |
+| `DataCadastro` | `DateTime`      | Opcional          |
 | `CategoriaId`  | `int`           | Chave Estrangeira |
 
-### Categoria
+### 📌 Categoria
 
-| Campo         | Tipo de Dado  | Restrições     |
-| :------------ | :------------ | :------------- |
+| Campo         | Tipo          | Restrições     |
+| ------------- | ------------- | -------------- |
 | `CategoriaId` | `int`         | Chave Primária |
 | `Nome`        | `string(80)`  | Obrigatório    |
 | `ImagemUrl`   | `string(300)` | Obrigatório    |
 
-## Como Executar o Projeto
+---
 
-1.  **Pré-requisitos:**
+## 🛠️ Como Executar o Projeto
 
-    - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-    - Um editor de código de sua preferência (como Visual Studio Code ou Visual Studio 2022).
+### 1. Pré-requisitos
 
-2.  **Clone o repositório:**
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- Editor de código (Visual Studio, VS Code, etc.)
 
-    ```bash
-    git clone <URL_DO_SEU_REPOSITORIO>
-    cd <NOME_DA_PASTA_DO_PROJETO>
-    ```
+### 2. Clonar o Repositório
 
-3.  **Configure o Banco de Dados:**
+```bash
+git clone <URL_DO_REPOSITORIO>
+cd <NOME_DA_PASTA>
+```
 
-    - O projeto está configurado para usar o SQLite.
-    - A string de conexão pode ser encontrada e modificada no arquivo `appsettings.json`.
-    - Para criar o banco de dados e as tabelas, execute os seguintes comandos do Entity Framework Core no terminal, na pasta do projeto:
+### 3. Configurar o Banco de Dados
 
-    <!-- end list -->
+- A aplicação utiliza SQLite por padrão.
+- A string de conexão pode ser editada no arquivo `appsettings.json`.
 
-    ```bash
-    dotnet tool install --global dotnet-ef
-    dotnet ef migrations add CriacaoInicial
-    dotnet ef database update
-    ```
+#### Criar a base de dados:
 
-    - [cite\_start]_Observação: As dependências do `Microsoft.EntityFrameworkCore.Design` [cite: 2] [cite\_start]e `Microsoft.EntityFrameworkCore.Tools` [cite: 3] já estão incluídas no projeto._
+```bash
+dotnet tool install --global dotnet-ef
+dotnet ef migrations add CriacaoInicial
+dotnet ef database update
+```
 
-4.  **Execute a aplicação:**
+> ℹ️ As dependências `Microsoft.EntityFrameworkCore.Design` e `Microsoft.EntityFrameworkCore.Tools` já estão incluídas no projeto.
 
-    ```bash
-    dotnet run
-    ```
+### 4. Executar a Aplicação
 
-5.  **Acesse a documentação da API:**
+```bash
+dotnet run
+```
 
-    - Após iniciar a aplicação, você pode acessar a interface do Swagger para ver todos os endpoints e testá-los. O endereço padrão geralmente é:
-      - `https://localhost:<PORTA>/swagger/index.html`
+### 5. Acessar a Documentação Swagger
 
-## Endpoints da API
+Após iniciar, acesse a interface do Swagger via:
 
-A API possui dois controladores principais: `Produtos` e `Categorias`.
+```
+https://localhost:<PORTA>/swagger/index.html
+```
+
+---
+
+## 🌐 Endpoints Disponíveis
 
 ### Produtos
 
-- `GET /Produtos`: Retorna uma lista de todos os produtos.
-- `GET /Produtos/{id}`: Retorna um produto específico com base no `id`.
-- `POST /Produtos`: Adiciona um novo produto.
-- `PUT /Produtos/{id}`: Atualiza um produto existente.
-- `DELETE /Produtos/{id}`: Remove um produto.
+| Método | Rota             | Descrição               |
+| ------ | ---------------- | ----------------------- |
+| GET    | `/Produtos`      | Lista todos os produtos |
+| GET    | `/Produtos/{id}` | Retorna produto por ID  |
+| POST   | `/Produtos`      | Cria um novo produto    |
+| PUT    | `/Produtos/{id}` | Atualiza um produto     |
+| DELETE | `/Produtos/{id}` | Remove um produto       |
 
 ### Categorias
 
-- `GET /Categoria`: Retorna uma lista de todas as categorias.
-- `GET /Categoria/produtos`: Retorna uma lista de todas as categorias, incluindo os produtos associados a cada uma.
-- `GET /Categoria/{id}`: Retorna uma categoria específica com base no `id`.
-- `POST /Categoria`: Adiciona uma nova categoria.
-- `PUT /Categoria/{id}`: Atualiza uma categoria existente.
-- `DELETE /Categoria/{id}`: Remove uma categoria.
+| Método | Rota                  | Descrição                               |
+| ------ | --------------------- | --------------------------------------- |
+| GET    | `/Categoria`          | Lista todas as categorias               |
+| GET    | `/Categoria/produtos` | Categorias com seus produtos associados |
+| GET    | `/Categoria/{id}`     | Retorna categoria por ID                |
+| POST   | `/Categoria`          | Cria uma nova categoria                 |
+| PUT    | `/Categoria/{id}`     | Atualiza uma categoria existente        |
+| DELETE | `/Categoria/{id}`     | Remove uma categoria                    |
 
-## Próximos Passos e Melhorias
+---
 
-Este é um projeto em desenvolvimento. Algumas das melhorias planejadas incluem:
+## 🔧 Melhorias Futuras
 
-- [ ] Implementar tratamento de erros mais robusto.
-- [ ] Adicionar validação de dados (Data Annotations) mais completa nos modelos.
-- [ ] Criar uma camada de serviço para separar as regras de negócio dos controladores.
-- [ ] Implementar paginação nos endpoints de listagem.
-- [ ] Adicionar autenticação e autorização.
-- [ ] Escrever testes unitários e de integração.
+- [ ] Tratamento de erros mais completo
+- [ ] Validações de dados com Data Annotations
+- [ ] Camada de serviço para separação de responsabilidades
+- [ ] Paginação nas listagens
+- [ ] Autenticação e autorização
+- [ ] Testes unitários e de integração
